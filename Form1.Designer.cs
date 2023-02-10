@@ -33,7 +33,7 @@
             // 
             // ConnectDb
             // 
-            this.ConnectDb.Location = new System.Drawing.Point(266, 186);
+            this.ConnectDb.Location = new System.Drawing.Point(52, 45);
             this.ConnectDb.Name = "ConnectDb";
             this.ConnectDb.Size = new System.Drawing.Size(141, 60);
             this.ConnectDb.TabIndex = 0;
@@ -45,10 +45,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(786, 377);
+            this.ClientSize = new System.Drawing.Size(255, 149);
             this.Controls.Add(this.ConnectDb);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Tervetuloa";
             this.ResumeLayout(false);
 
         }
