@@ -6,23 +6,12 @@ using System.Windows.Forms;
 namespace TietovisaForms {
     public partial class Tietovisa : Form {
         // I quess this works
-        public string Topic {
-            get {
-                return TopicSelect.SelectedText.ToString();
-            }
-            set {
-                TopicSelect.Items.Add(value);
-            }
-        }
         private class Question {
-            public Question(string topic, string question, string[] answers, uint rightAns) => (this.topic, this.question, this.answers, this.rigthAnswer) = (topic, question, answers, rightAns);
+            public Question(string question, string[] answers, uint rightAns)
+                        => (this.question, this.answers, this.rigthAnswer) = (question, answers, rightAns);
             public readonly string question;
-            readonly string topic;
             public readonly string[] answers = new string[3];
-            readonly uint rigthAnswer;
-            public uint RightAnswer() {
-                return rigthAnswer;
-            }
+            public uint rigthAnswer { get; private set; }
 
         }
 
@@ -51,8 +40,7 @@ namespace TietovisaForms {
                                               reader["Answer2"].ToString(),
                                               reader["Answer3"].ToString()};
 
-                questions.Add(new Question(reader["Topic"].ToString(),
-                                           reader["Question"].ToString(),
+                questions.Add(new Question(reader["Question"].ToString(),
                                            qs, // This should never fail
                                            uint.Parse(reader["Right_Answer"].ToString())));
             }
@@ -78,7 +66,7 @@ namespace TietovisaForms {
          */
         private void ValidateAnswer(object sender, System.EventArgs e) {
             var btn = (Button)sender;
-            if(btn.Text != questions[(int)CurrQuestion].answers[questions[(int)CurrQuestion].RightAnswer()-1]) {
+            if(btn.Text != questions[(int)CurrQuestion].answers[questions[(int)CurrQuestion].rigthAnswer - 1]) {
                 MessageBox.Show("Väärin.");
             } else {
                 correctAnswers++;

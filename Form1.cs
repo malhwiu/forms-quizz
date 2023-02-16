@@ -36,7 +36,6 @@ namespace TietovisaForms {
             while(reader.Read()) {
                 var data = reader.GetValue(1);
                 //note this add the assigned element to a combobox
-                visa.Topic=data.ToString();
             }
 
             uint qcount = (uint)uNoQdef.Value;

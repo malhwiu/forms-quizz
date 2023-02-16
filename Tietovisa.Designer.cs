@@ -29,12 +29,9 @@
         private void InitializeComponent()
         {
             this.LbQuestion = new System.Windows.Forms.Label();
-            this.TopicSelect = new System.Windows.Forms.ComboBox();
-            this.LbText = new System.Windows.Forms.Label();
             this.BtnQuestion1 = new System.Windows.Forms.Button();
             this.BtnQuestion2 = new System.Windows.Forms.Button();
             this.BtnQuestion3 = new System.Windows.Forms.Button();
-            this.BtnNextQuestion = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.counter = new System.Windows.Forms.Label();
@@ -44,36 +41,14 @@
             // LbQuestion
             // 
             this.LbQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.LbQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LbQuestion.Location = new System.Drawing.Point(11, 104);
             this.LbQuestion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbQuestion.Name = "LbQuestion";
-            this.LbQuestion.Size = new System.Drawing.Size(625, 37);
+            this.LbQuestion.Size = new System.Drawing.Size(625, 114);
             this.LbQuestion.TabIndex = 0;
             this.LbQuestion.Text = "Kysymys";
             this.LbQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TopicSelect
-            // 
-            this.TopicSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TopicSelect.FormattingEnabled = true;
-            this.TopicSelect.Location = new System.Drawing.Point(208, 162);
-            this.TopicSelect.Margin = new System.Windows.Forms.Padding(2);
-            this.TopicSelect.Name = "TopicSelect";
-            this.TopicSelect.Size = new System.Drawing.Size(233, 21);
-            this.TopicSelect.TabIndex = 1;
-            // 
-            // LbText
-            // 
-            this.LbText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.LbText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbText.Location = new System.Drawing.Point(245, 212);
-            this.LbText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LbText.Name = "LbText";
-            this.LbText.Size = new System.Drawing.Size(142, 18);
-            this.LbText.TabIndex = 2;
-            this.LbText.Text = "Aihealue";
-            this.LbText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnQuestion1
             // 
@@ -111,18 +86,6 @@
             this.BtnQuestion3.Text = "Vastaus3";
             this.BtnQuestion3.UseVisualStyleBackColor = true;
             this.BtnQuestion3.Click += new System.EventHandler(this.ValidateAnswer);
-            // 
-            // BtnNextQuestion
-            // 
-            this.BtnNextQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnNextQuestion.Location = new System.Drawing.Point(547, 313);
-            this.BtnNextQuestion.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnNextQuestion.Name = "BtnNextQuestion";
-            this.BtnNextQuestion.Size = new System.Drawing.Size(92, 37);
-            this.BtnNextQuestion.TabIndex = 6;
-            this.BtnNextQuestion.Text = "Seuraava kysymys";
-            this.BtnNextQuestion.UseVisualStyleBackColor = true;
-            this.BtnNextQuestion.Click += new System.EventHandler(this.NextAnswer);
             // 
             // panel1
             // 
@@ -167,12 +130,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 361);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.BtnNextQuestion);
             this.Controls.Add(this.BtnQuestion3);
             this.Controls.Add(this.BtnQuestion2);
             this.Controls.Add(this.BtnQuestion1);
-            this.Controls.Add(this.LbText);
-            this.Controls.Add(this.TopicSelect);
             this.Controls.Add(this.LbQuestion);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
@@ -189,12 +149,9 @@
         #endregion
 
         private System.Windows.Forms.Label LbQuestion;
-        private System.Windows.Forms.ComboBox TopicSelect;
-        private System.Windows.Forms.Label LbText;
         private System.Windows.Forms.Button BtnQuestion1;
         private System.Windows.Forms.Button BtnQuestion2;
         private System.Windows.Forms.Button BtnQuestion3;
-        private System.Windows.Forms.Button BtnNextQuestion;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label counter;
