@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Windows.Forms;
 
@@ -14,9 +15,7 @@ namespace TietovisaForms {
             }
         }
         private class Question {
-            public Question(string topic, string question, string[] answers, uint rightAns)
-                            => (this.topic, this.question, this.answers, this.rigthAnswer)=
-                               (topic, question, answers, rightAns);
+            public Question(string topic, string question, string[] answers, uint rightAns) => (this.topic, this.question, this.answers, this.rigthAnswer) = (topic, question, answers, rightAns);
             public readonly string question;
             readonly string topic;
             public readonly string[] answers = new string[3];
@@ -26,16 +25,17 @@ namespace TietovisaForms {
             }
 
         }
+
         uint CurrQuestion = 0;
-        uint numOfQuestions = 3;
+        uint numOfQuestions = 4;
         List<Question> questions = new List<Question>();
 
-        public void StartGame() {
+        public void StartGame(string conStr) { //this method is called from Form1.cs
 
-            var con = new SQLiteConnection(Form1.conStr);
+            var con = new SQLiteConnection(conStr);
             con.Open();
             var cmd = con.CreateCommand();
-            cmd.CommandText=$"SELECT * FROM tb_question LIMIT {numOfQuestions};";
+            cmd.CommandText=$"SELECT * FROM tb_question ORDER BY RANDOM() LIMIT {numOfQuestions};"; //Nikolai: questions are in random order
             var reader = cmd.ExecuteReader();
 
             while(reader.Read()) {
@@ -64,25 +64,34 @@ namespace TietovisaForms {
             BtnQuestion2.Text=questions[1];
             BtnQuestion3.Text=questions[2];
         }
-
+        /* Nikolai: Instead of indicating the correct answer with message "Oikein!", we are going to simply go to the next one.
+         */
         private void ValidateAnswer(object sender, System.EventArgs e) {
             var btn = (Button)sender;
-            if(btn.Text==
-               questions[(int)CurrQuestion].answers[questions[(int)CurrQuestion].RightAnswer()-1]) {
-                MessageBox.Show("Oikein.");
-            } else {
+            if(btn.Text != questions[(int)CurrQuestion].answers[questions[(int)CurrQuestion].RightAnswer()-1]) {
                 MessageBox.Show("Väärin.");
+            } else {
+                GoNext();
             }
         }
 
+        /* Nikolai: Had to move everything to GoNext() method, because this one is called from button thus cannot be simply called from other places in the code*/
         private void NextAnswer(object sender, System.EventArgs e) {
-            CurrQuestion++;
-            if(CurrQuestion>=numOfQuestions) {
-                MessageBox.Show("Pääsit kysymysten loppuun.");
+            GoNext();
+        }
 
-            } else {
+        private void GoNext()
+        {
+            CurrQuestion++;
+            if (CurrQuestion >= numOfQuestions)
+            {
+                MessageBox.Show("Pääsit kysymysten loppuun.");
+                // put stats in the future
+            }
+            else
+            {
                 UpdateBtns(questions[(int)CurrQuestion].answers);
-                LbQuestion.Text=questions[(int)CurrQuestion].question;
+                LbQuestion.Text = questions[(int)CurrQuestion].question;
             }
         }
 

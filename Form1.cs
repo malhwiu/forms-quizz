@@ -9,7 +9,13 @@ namespace TietovisaForms {
         static readonly string path = $"{System.AppDomain.CurrentDomain.BaseDirectory}db\\visa.db";
         /* cs 7 does not have constant string interpolation.
          * This string is constructed at runtime :( */
-        public readonly static string conStr = $"Data Source={path};ApplicationIntent=ReadOnly";
+
+        /*Nikolai: 
+         * UPD: switched conStr to private instead of public public readonly static
+         * since there is no longer need using it outside of this class
+         */
+
+        private string conStr = $"Data Source={path};ApplicationIntent=ReadOnly";
         public Form1() {
             InitializeComponent();
         }
@@ -34,7 +40,7 @@ namespace TietovisaForms {
             }
 
             con.Close();
-            visa.StartGame();
+            visa.StartGame(conStr);
 
         }
     }
