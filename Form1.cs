@@ -6,12 +6,12 @@ using System.Windows.Forms;
 namespace TietovisaForms {
     public partial class Form1 : Form {
         // FIXME: make not use relative path
-        static readonly string path = $"{System.AppDomain.CurrentDomain.BaseDirectory}db\\visa.db";
+        private static readonly string path = $"{System.AppDomain.CurrentDomain.BaseDirectory}db\\visa.db";
         /* cs 7 does not have constant string interpolation.
          * This string is constructed at runtime :( */
 
         /*Nikolai: 
-         * UPD: switched conStr to private instead of public public readonly static
+         * UPD: switched conStr to private instead of public public readonly static,
          * since there is no longer need using it outside of this class
          */
 
@@ -39,8 +39,10 @@ namespace TietovisaForms {
                 visa.Topic=data.ToString();
             }
 
+            uint qcount = (uint)uNoQdef.Value;
+
             con.Close();
-            visa.StartGame(conStr);
+            visa.StartGame(conStr, qcount);
 
         }
     }

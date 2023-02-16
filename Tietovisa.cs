@@ -26,16 +26,23 @@ namespace TietovisaForms {
 
         }
 
-        uint CurrQuestion = 0;
-        uint numOfQuestions = 4;
         List<Question> questions = new List<Question>();
+        uint CurrQuestion = 0;
+        uint defnumOfQuestions = 4; // Number of questions defined by user
+        uint correctAnswers = 0;
+        int realNumOfQuestions = 0; // Number of questions found in the database
+        
 
-        public void StartGame(string conStr) { //this method is called from Form1.cs
+        public void StartGame(string conStr, uint numOfQuestions) { //this method is called from Form1.cs
+
+            if(numOfQuestions < 1) { throw new Exception("int numOfQuestions is lower than 1"); }
+
+            defnumOfQuestions = numOfQuestions;
 
             var con = new SQLiteConnection(conStr);
             con.Open();
             var cmd = con.CreateCommand();
-            cmd.CommandText=$"SELECT * FROM tb_question ORDER BY RANDOM() LIMIT {numOfQuestions};"; //Nikolai: questions are in random order
+            cmd.CommandText=$"SELECT * FROM tb_question ORDER BY RANDOM() LIMIT {defnumOfQuestions};"; //Nikolai: questions are in random order
             var reader = cmd.ExecuteReader();
 
             while(reader.Read()) {
@@ -49,6 +56,8 @@ namespace TietovisaForms {
                                            qs, // This should never fail
                                            uint.Parse(reader["Right_Answer"].ToString())));
             }
+
+            realNumOfQuestions = questions.Count;
             con.Clone();
             // Show the current answer
             RefreshAnswer();
@@ -63,6 +72,7 @@ namespace TietovisaForms {
             BtnQuestion1.Text=questions[0];
             BtnQuestion2.Text=questions[1];
             BtnQuestion3.Text=questions[2];
+            counter.Text = $"{CurrQuestion + 1} / {realNumOfQuestions}";
         }
         /* Nikolai: Instead of indicating the correct answer with message "Oikein!", we are going to simply go to the next one.
          */
@@ -71,6 +81,7 @@ namespace TietovisaForms {
             if(btn.Text != questions[(int)CurrQuestion].answers[questions[(int)CurrQuestion].RightAnswer()-1]) {
                 MessageBox.Show("Väärin.");
             } else {
+                correctAnswers++;
                 GoNext();
             }
         }
@@ -83,7 +94,7 @@ namespace TietovisaForms {
         private void GoNext()
         {
             CurrQuestion++;
-            if (CurrQuestion >= numOfQuestions)
+            if (CurrQuestion >= realNumOfQuestions) // Nikolai: potential bug fixed. If user chooses more then there are questions in the database, then unexpected behaviour would occur.
             {
                 MessageBox.Show("Pääsit kysymysten loppuun.");
                 // put stats in the future
@@ -97,7 +108,6 @@ namespace TietovisaForms {
 
         public Tietovisa() {
             InitializeComponent();
-
         }
     }
 }

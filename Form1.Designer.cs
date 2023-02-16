@@ -29,28 +29,57 @@
         private void InitializeComponent()
         {
             this.ConnectDb = new System.Windows.Forms.Button();
+            this.uNoQdef = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.uNoQdef)).BeginInit();
             this.SuspendLayout();
             // 
             // ConnectDb
             // 
-            this.ConnectDb.Location = new System.Drawing.Point(162, 106);
+            this.ConnectDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ConnectDb.Location = new System.Drawing.Point(12, 113);
             this.ConnectDb.Name = "ConnectDb";
-            this.ConnectDb.Size = new System.Drawing.Size(141, 31);
+            this.ConnectDb.Size = new System.Drawing.Size(141, 24);
             this.ConnectDb.TabIndex = 0;
             this.ConnectDb.Text = "Aloita peli";
             this.ConnectDb.UseVisualStyleBackColor = true;
             this.ConnectDb.Click += new System.EventHandler(this.ConnectDb_Click);
+            // 
+            // uNoQdef
+            // 
+            this.uNoQdef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.uNoQdef.Location = new System.Drawing.Point(12, 87);
+            this.uNoQdef.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.uNoQdef.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.uNoQdef.Name = "uNoQdef";
+            this.uNoQdef.Size = new System.Drawing.Size(141, 20);
+            this.uNoQdef.TabIndex = 1;
+            this.uNoQdef.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.uNoQdef.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(315, 149);
+            this.Controls.Add(this.uNoQdef);
             this.Controls.Add(this.ConnectDb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Tervetuloa";
+            ((System.ComponentModel.ISupportInitialize)(this.uNoQdef)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -58,6 +87,7 @@
         #endregion
 
         private System.Windows.Forms.Button ConnectDb;
+        private System.Windows.Forms.NumericUpDown uNoQdef;
     }
 }
 
