@@ -17,7 +17,7 @@ namespace TietovisaForms {
 
         List<Question> questions = new List<Question>();
         uint CurrQuestion = 0;
-        uint defnumOfQuestions = 4; // Number of questions defined by user
+        uint defnumOfQuestions = 0; // Number of questions defined by user
         uint correctAnswers = 0;
         int realNumOfQuestions = 0; // Number of questions found in the database
         
@@ -31,7 +31,7 @@ namespace TietovisaForms {
             var con = new SQLiteConnection(conStr);
             con.Open();
             var cmd = con.CreateCommand();
-            cmd.CommandText=$"SELECT * FROM tb_question ORDER BY RANDOM() LIMIT {defnumOfQuestions};"; //Nikolai: questions are in random order
+            cmd.CommandText=$"SELECT * FROM tb_question ORDER BY RANDOM() LIMIT {defnumOfQuestions};"; //Nikolai: show questions in random order
             var reader = cmd.ExecuteReader();
 
             while(reader.Read()) {
