@@ -67,7 +67,7 @@ namespace TietovisaForms {
         private void ValidateAnswer(object sender, System.EventArgs e) {
             var btn = (Button)sender;
             if(btn.Text != questions[(int)CurrQuestion].answers[questions[(int)CurrQuestion].rigthAnswer - 1]) {
-                MessageBox.Show("Väärin.");
+                GoNext();
             } else {
                 correctAnswers++;
                 GoNext();
@@ -84,7 +84,11 @@ namespace TietovisaForms {
             CurrQuestion++;
             if (CurrQuestion >= realNumOfQuestions) //  potential bug fixed. If user chooses more then there are questions in the database, then unexpected behaviour would occur.
             {
-                MessageBox.Show("Pääsit kysymysten loppuun.");
+                
+
+                int incorrect = realNumOfQuestions - (int)correctAnswers;
+
+                MessageBox.Show(Convert.ToString(correctAnswers) +  " oikein\n" + Convert.ToString(incorrect) + " väärin");
                 this.Hide();
                 // put stats in the future
             }
