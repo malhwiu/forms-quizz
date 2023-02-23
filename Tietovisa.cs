@@ -85,6 +85,7 @@ namespace TietovisaForms {
             if (CurrQuestion >= realNumOfQuestions) //  potential bug fixed. If user chooses more then there are questions in the database, then unexpected behaviour would occur.
             {
                 MessageBox.Show("Pääsit kysymysten loppuun.");
+                this.Hide();
                 // put stats in the future
             }
             else
