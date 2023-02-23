@@ -31,7 +31,7 @@ namespace TietovisaForms {
             var con = new SQLiteConnection(conStr);
             con.Open();
             var cmd = con.CreateCommand();
-            cmd.CommandText=$"SELECT * FROM tb_question ORDER BY RANDOM() LIMIT {defnumOfQuestions};"; //Nikolai: show questions in random order
+            cmd.CommandText=$"SELECT * FROM tb_question ORDER BY RANDOM() LIMIT {defnumOfQuestions};"; // show questions in random order
             var reader = cmd.ExecuteReader();
 
             while(reader.Read()) {
@@ -62,7 +62,7 @@ namespace TietovisaForms {
             BtnQuestion3.Text=questions[2];
             counter.Text = $"{CurrQuestion + 1} / {realNumOfQuestions}";
         }
-        /* Nikolai: Instead of indicating the correct answer with message "Oikein!", we are going to simply go to the next one.
+        /*  Instead of indicating the correct answer with message "Oikein!", we are going to simply go to the next one.
          */
         private void ValidateAnswer(object sender, System.EventArgs e) {
             var btn = (Button)sender;
@@ -74,7 +74,7 @@ namespace TietovisaForms {
             }
         }
 
-        /* Nikolai: Had to move everything to GoNext() method, because this one is called from button thus cannot be simply called from other places in the code*/
+        /*  Had to move everything to GoNext() method, because this one is called from button thus cannot be simply called from other places in the code*/
         private void NextAnswer(object sender, System.EventArgs e) {
             GoNext();
         }
@@ -82,7 +82,7 @@ namespace TietovisaForms {
         private void GoNext()
         {
             CurrQuestion++;
-            if (CurrQuestion >= realNumOfQuestions) // Nikolai: potential bug fixed. If user chooses more then there are questions in the database, then unexpected behaviour would occur.
+            if (CurrQuestion >= realNumOfQuestions) //  potential bug fixed. If user chooses more then there are questions in the database, then unexpected behaviour would occur.
             {
                 MessageBox.Show("Pääsit kysymysten loppuun.");
                 // put stats in the future
